@@ -2,15 +2,13 @@ package ims;
 
 public interface Product {
 	
-	public void setID();
-	
 	public int getID();
 	
-	public void setName();
+	public void setName(String Name);
 	
 	public String getName();
 	
-	public void setBrand();
+	public void setBrand(String Brand);
 	
 	public String getBrand();
 }
