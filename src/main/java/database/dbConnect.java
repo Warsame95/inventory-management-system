@@ -15,7 +15,7 @@ public class dbConnect {
 	private Connection conn = null;
 	private Statement stmt = null;
 	
-	
+
 	public dbConnect(String JDBC_DRIVER, String DB_URL, String USER, String PASS) {
 		this.JDBC_DRIVER = JDBC_DRIVER;
 		this.DB_URL = DB_URL;
@@ -48,6 +48,7 @@ public class dbConnect {
 		System.out.println("CONNECTION ESTABLISHED");
 		
 	}
+	
 	
 	public Statement createStatement() {
 		
