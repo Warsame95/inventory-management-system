@@ -7,7 +7,12 @@ public class Customer {
 	private String Email;
 	private String Address;
 	
-	
+	public Customer(int ID, String Name, String Email, String Address) {
+		this.ID = ID;
+		this.Name = Name;
+		this.Email = Email;
+		this.Address = Address;
+	}
 	
 	
 	public int getID() {
