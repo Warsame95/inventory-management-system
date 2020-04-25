@@ -7,27 +7,11 @@ import java.sql.Statement;
 
 public class dbConnect {
 	
-	private final String JDBC_DRIVER;
-	private final String DB_URL;
-	private final String USER;
-	private final String PASS;
-	
 	private Connection conn = null;
 	private Statement stmt = null;
 	
 
 	public dbConnect(String JDBC_DRIVER, String DB_URL, String USER, String PASS) {
-		this.JDBC_DRIVER = JDBC_DRIVER;
-		this.DB_URL = DB_URL;
-		this.USER = USER;
-		this.PASS = PASS;
-		
-	}
-	
-	
-	
-	public void startConnection() {
-		
 		try {
 			Class.forName(JDBC_DRIVER);
 		} catch (ClassNotFoundException e) {
@@ -50,6 +34,31 @@ public class dbConnect {
 	}
 	
 	
+	
+
+	public Connection getConn() {
+		return conn;
+	}
+
+
+
+	public void setConn(Connection conn) {
+		this.conn = conn;
+	}
+
+
+
+	public Statement getStmt() {
+		return stmt;
+	}
+
+
+
+	public void setStmt(Statement stmt) {
+		this.stmt = stmt;
+	}
+	
+	
 	public Statement createStatement() {
 		
 		try {
@@ -61,5 +70,7 @@ public class dbConnect {
 		
 		return stmt;
 	}
+	
+	
 
 }
