@@ -15,16 +15,22 @@ public class Main {
 		
 		dbConnect db = new dbConnect(JDBC_DRIVER, DB_URL, USER, PASS);
 		
-		Dao d = new CustomerDao(db);
+//		Dao d = new CustomerDao(db);
+//		
+//		Customer cus = new Customer(2,"ilias","ilias@gmail.com","456 high road");
+//		
+//		//d.Create(cus);
+//		
+//		//d.Read();
+//		
+//		d.Delete(2);
+//		d.Read();
 		
-		Customer cus = new Customer(2,"ilias","ilias@gmail.com","456 high road");
+		Dao dorder = new OrderDao(db);
+		Order ord = new Order(1,2,2,3,10.9);
 		
-		//d.Create(cus);
+		dorder.Create(ord);
 		
-		//d.Read();
-		
-		d.Delete(2);
-		d.Read();
 	}
 
 }

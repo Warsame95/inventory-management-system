@@ -2,8 +2,6 @@ package dao;
 
 import java.sql.*;
 
-import com.mysql.jdbc.Statement;
-
 import database.dbConnect;
 
 public class OrderDao implements Dao<Order>{
@@ -11,7 +9,7 @@ public class OrderDao implements Dao<Order>{
 	private Statement stmt;
 	
 	public OrderDao(dbConnect db) {
-		
+		this.stmt = db.createStatement();
 	}
 
 	public void Create(Order order) {
@@ -22,6 +20,7 @@ public class OrderDao implements Dao<Order>{
 				
 				try {
 					stmt.executeUpdate(sqlInsert);
+					System.out.println("Order Created");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
