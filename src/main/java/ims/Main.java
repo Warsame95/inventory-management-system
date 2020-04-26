@@ -26,10 +26,25 @@ public class Main {
 //		d.Delete(2);
 //		d.Read();
 		
-		Dao dorder = new OrderDao(db);
-		Order ord = new Order(1,2,2,3,10.9);
+//		Dao dorder = new OrderDao(db);
+//		Order ord = new Order(1,2,2,3,10.9);
+//		
+//		dorder.Create(ord);
 		
-		dorder.Create(ord);
+		Dao po = new ProductDao(db);
+		Product pro = new Product(1, "gta5", 30.0, 20);
+		
+		po.Create(pro);
+		
+		pro = new Product(2, "fifa20", 40, 15);
+		
+		po.Create(pro);
+		
+		po.Read();
+		
+		po.Delete(2);
+		
+		po.Read();
 		
 	}
 

@@ -1,24 +1,24 @@
 package dao;
 
 public class Product {
-	private int id;
+	private int ID;
 	private String Name;
 	private double Price;
 	private int Stock;
 	
-	public Product(int id, String Name, double Price, int Stock) {
-		this.id = id;
+	public Product(int ID, String Name, double Price, int Stock) {
+		this.ID = ID;
 		this.Name = Name;
 		this.Price = Price;
 		this.Stock = Stock;
 	}
 
-	public int getId() {
-		return id;
+	public int getID() {
+		return ID;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int ID) {
+		this.ID = ID;
 	}
 
 	public String getName() {
