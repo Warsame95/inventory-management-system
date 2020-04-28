@@ -2,6 +2,7 @@ package doaTest;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,21 +29,27 @@ public class CustomerDaoTest {
 	dbConnect db;
 	Statement stmt = null;
 	Connection conn = null;
-	
+	Dao customerDao;
 	
 	@Before
 	public void init() {
 		db = new dbConnect(JDBC_DRIVER, DB_URL, USER, PASS);
 		stmt = db.createStatement();
-		assertNotNull(db.createStatement());
+		
+		customerDao = new CustomerDao(db);
 	}
 	
 	@Test
 	public void testCreate() {
 		
-		Dao customerDao = new CustomerDao(db);
+		//Dao customerDao = new CustomerDao(db);
+		
 		Customer cus = mock(Customer.class);
+		Customer cus1 = mock(Customer.class);
+		
 		customerDao.Create(cus);
+		customerDao.Create(cus1);
+		
 		ResultSet rs = null;
 		String name = null;
 		int num = 0;
@@ -61,19 +68,70 @@ public class CustomerDaoTest {
 			e.printStackTrace();
 		}
 		
-		assertEquals(1, num);
+		
+		assertEquals(2, num);
+		
+		try {
+			stmt.executeUpdate("delete from customers");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
 	
 	@Test
 	public void testUpdate() {
-		
-		Dao CustomerDao = new CustomerDao(db);
+
 		Customer cus = mock(Customer.class);
 		
-		CustomerDao.Update(1, "NAME", cus);
+		when(cus.getName()).thenReturn("Warsame");
+		
+		//customerDao.Update(1, "NAME", cus);
+		
+		
+		
 			
+		
+	}
+	
+	@Test
+	public void testDelete() {
+		
+		Customer cus = mock(Customer.class);
+		Customer cus1 = mock(Customer.class);
+		when(cus.getID()).thenReturn(1);
+		when(cus1.getID()).thenReturn(2);
+		
+		customerDao.Create(cus);
+		customerDao.Create(cus1);
+		customerDao.Delete(1);
+		
+		ResultSet rs = null;
+		int num = 0;
+		try {
+			rs = stmt.executeQuery("Select count(*) from customers");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			rs.next();
+			num = rs.getInt("count(*)");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals(1, num);
+		
+		try {
+			stmt.executeUpdate("delete from customers");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

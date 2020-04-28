@@ -26,7 +26,7 @@ public class Main {
 		//d.Delete(2);
 		d.Read();
 		
-		d.Update(cus);
+		//d.Update(cus);
 		
 		d.Read();
 		
