@@ -56,9 +56,30 @@ public class OrderDao implements Dao<Order>{
 		
 	}
 
-	public void Update(Order order) {
+	public void Update(int id, String attribute, Order order) {
 		// TODO Auto-generated method stub
 		
+		String sql = "";
+		switch(attribute) {
+		case "PRODUCTID":
+			sql = "UPDATE Orders set product_id = "+ order.getProductId() + " where order_id = "+id;
+			break;
+		case "CUSTOMERID":
+			sql = "UPDATE Orders set customer_id = "+ order.getCustomerId() + " where order_id = "+id;
+			break;
+		case "PRICE":
+			sql = "UPDATE Orders set price = "+ order.getPrice() + " where order_id = "+id;
+			break;
+		case "QUANTITY":
+			sql = "UPDATE Orders set quantity = "+ order.getQuantity() + " where order_id = "+id;
+		}
+		
+		try {
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void Delete(int order_id) {

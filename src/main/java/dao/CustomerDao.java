@@ -55,28 +55,20 @@ public class CustomerDao implements Dao<Customer> {
 		}
 	}
 
-	public void Update(Customer customer) {
+	public void Update(int id, String attribute, Customer customer) {
 		// TODO Auto-generated method stub
-		System.out.println("Enter ID of Customer you like to update.");
-		int id = Utils.getInt();
-		
-		System.out.println("Enter the field you would like to update");
-		String attribute = Utils.getInput().toUpperCase();
-		
-		System.out.println("Enter new value");
-		String newValue = Utils.getInput();
 		
 		String sql = "";
 		
 		switch(attribute) {
 		case "NAME":
-			sql = "UPDATE Customers set name = '"+ newValue + "' where customer_id = "+id;
+			sql = "UPDATE Customers set name = '"+ customer.getName() + "' where customer_id = "+id;
 			break;
 		case "EMAIL":
-			sql = "UPDATE Customers set email = '"+ newValue + "' where customer_id = "+id;
+			sql = "UPDATE Customers set email = '"+ customer.getEmail() + "' where customer_id = "+id;
 			break;
 		case "ADDRESS":
-			sql = "UPDATE Customers set Address = '"+ newValue + "' where customer_id = "+id;
+			sql = "UPDATE Customers set Address = '"+ customer.getAddress() + "' where customer_id = "+id;
 			break;
 		}
 		

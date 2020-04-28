@@ -53,8 +53,28 @@ public class ProductDao implements Dao<Product>{
 		
 	}
 
-	public void Update(Product t) {
+	public void Update(int id, String attribute, Product product) {
 		// TODO Auto-generated method stub
+		String sql = "";
+		
+		switch(attribute) {
+		case "NAME":
+			sql = "UPDATE Products set name = '"+ product.getName() + "' where product_id = "+id;
+			break;
+		case "PRICE":
+			sql = "UPDATE Products set price = "+ product.getPrice() + " where product_id = "+id;
+			break;
+		case "STOCK":
+			sql = "UPDATE Products set stock = "+ product.getStock() + " where product_id = "+id;
+			break;
+		}
+		
+		try {
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
