@@ -2,6 +2,8 @@ package dao;
 
 
 import database.dbConnect;
+import utils.Utils;
+
 import java.sql.*;
 
 public class CustomerDao implements Dao<Customer> {
@@ -55,7 +57,35 @@ public class CustomerDao implements Dao<Customer> {
 
 	public void Update(Customer customer) {
 		// TODO Auto-generated method stub
+		System.out.println("Enter ID of Customer you like to update.");
+		int id = Utils.getInt();
 		
+		System.out.println("Enter the field you would like to update");
+		String attribute = Utils.getInput().toUpperCase();
+		
+		System.out.println("Enter new value");
+		String newValue = Utils.getInput();
+		
+		String sql = "";
+		
+		switch(attribute) {
+		case "NAME":
+			sql = "UPDATE Customers set name = '"+ newValue + "' where customer_id = "+id;
+			break;
+		case "EMAIL":
+			sql = "UPDATE Customers set email = '"+ newValue + "' where customer_id = "+id;
+			break;
+		case "ADDRESS":
+			sql = "UPDATE Customers set Address = '"+ newValue + "' where customer_id = "+id;
+			break;
+		}
+		
+		try {
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void Delete(int id) {
