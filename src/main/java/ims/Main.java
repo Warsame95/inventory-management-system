@@ -1,5 +1,6 @@
 package ims;
 
+import Controllers.CustomerController;
 import dao.*;
 import database.dbConnect;
 
@@ -15,20 +16,23 @@ public class Main {
 		
 		dbConnect db = new dbConnect(JDBC_DRIVER, DB_URL, USER, PASS);
 		
-		Dao d = new CustomerDao(db);
+		//Dao d = new CustomerDao(db);
 		
-		Customer cus = new Customer(2,"ilias","ilias@gmail.com","456 high road");
+		//Customer cus = new Customer(2,"ilias","ilias@gmail.com","456 high road");
 		
 		//d.Create(cus);
 		
 		//d.Read();
 		
 		//d.Delete(2);
-		d.Read();
+		//d.Read();
 		
 		//d.Update(cus);
 		
-		d.Read();
+		//d.Read();
+		
+		CustomerController cc = new CustomerController();
+		cc.Create(db);
 		
 
 		
