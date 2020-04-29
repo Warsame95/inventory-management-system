@@ -16,6 +16,13 @@ public class Order {
 		this.Quantity = Quantity;
 		this.Price = Price;
 	}
+	
+	public Order(int OrderId, int CustomerId, int ProductId, int Quantity) {
+		this.OrderId = OrderId;
+		this.CustomerId = CustomerId;
+		this.ProductId = ProductId;
+		this.Quantity = Quantity;
+	}
 
 
 	public int getOrderId() {
