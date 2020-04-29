@@ -6,6 +6,7 @@ import domains.Customer;
 import utils.Utils;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class CustomerDao implements Dao<Customer> {
 	Statement stmt = null;
@@ -15,48 +16,40 @@ public class CustomerDao implements Dao<Customer> {
 
 	}
 	
-	public void Create(Customer customer) {
+	public Customer Create(Customer customer) {
 		// TODO Auto-generated method stub
 		String sqlInsert = "Insert into Customers (name, email, address) values('" + customer.getName()+ "','"
 		+ customer.getEmail()+ "','"+ customer.getAddress()+"')";
 		
 		try {
 			stmt.executeUpdate(sqlInsert);
+			return readLatest();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 		
 	}
-
-	public void Read() {
-		// TODO Auto-generated method stub
-
-		String sql2 = "SELECT * from Customers";
-		ResultSet rs = null;
-		
+	
+	public ArrayList<Customer> Read() {
 		try {
-			rs = stmt.executeQuery(sql2);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
+			ResultSet rs = stmt.executeQuery("SELECT * FROM customer");
+			ArrayList<Customer> customers = new ArrayList<Customer>();
 			while(rs.next()) {
-				int id1 = rs.getInt("customer_id");
-				String name1 = rs.getString("name");
-				String email1 = rs.getString("email");
-				String address1 = rs.getString("address");
-				System.out.println("id: "+id1+ " |name: "+name1+" |email: "+ email1+ " |Address: "+address1);
+				customers.add(getCustomer(rs));
 			}
+			return customers;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return new ArrayList<Customer>();
 	}
 
-	public void Update(int id, String attribute, Customer customer) {
+
+
+	public Customer Update(int id, String attribute, Customer customer) {
 		// TODO Auto-generated method stub
 		
 		String sql = "";
@@ -75,10 +68,12 @@ public class CustomerDao implements Dao<Customer> {
 		
 		try {
 			stmt.executeUpdate(sql);
+			return readCustomerById(id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	public void Delete(int id) {
@@ -91,6 +86,39 @@ public class CustomerDao implements Dao<Customer> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public Customer readLatest() {
+		try {
+			ResultSet rs = stmt.executeQuery("SELECT * FROM customers order by customer_id limit 1");
+			rs.next();
+			return getCustomer(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Customer getCustomer(ResultSet rs) throws SQLException {
+		int ID = rs.getInt("customer_id");
+		String name = rs.getString("name");
+		String email = rs.getString("email");
+		String address = rs.getString("address");
+		
+		return new Customer(ID,name,email,address);
+	}
+	
+	public Customer readCustomerById(int ID) {
+		try {
+			ResultSet rs = stmt.executeQuery("SELECT * FROM customers where customer_id = "+ID);
+			rs.next();
+			return getCustomer(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	

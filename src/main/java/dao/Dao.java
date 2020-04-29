@@ -1,12 +1,14 @@
 package dao;
 
+import java.util.ArrayList;
+
 public interface Dao<T> {
 	
-	public void Create(T t);
+	public T Create(T t);
 	
-	public void Read();
+	public ArrayList<T> Read();
 	
-	public void Update(int id, String attribute, T t);
+	public T Update(int id, String attribute, T t);
 	
 	public void Delete(int id);
 }
