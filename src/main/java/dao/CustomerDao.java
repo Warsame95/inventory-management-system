@@ -34,7 +34,7 @@ public class CustomerDao implements Dao<Customer> {
 	
 	public ArrayList<Customer> Read() {
 		try {
-			ResultSet rs = stmt.executeQuery("SELECT * FROM customer");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM customers");
 			ArrayList<Customer> customers = new ArrayList<Customer>();
 			while(rs.next()) {
 				customers.add(getCustomer(rs));
@@ -68,7 +68,7 @@ public class CustomerDao implements Dao<Customer> {
 		
 		try {
 			stmt.executeUpdate(sql);
-			return readCustomerById(id);
+			return readById(id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -109,7 +109,7 @@ public class CustomerDao implements Dao<Customer> {
 		return new Customer(ID,name,email,address);
 	}
 	
-	public Customer readCustomerById(int ID) {
+	public Customer readById(int ID) {
 		try {
 			ResultSet rs = stmt.executeQuery("SELECT * FROM customers where customer_id = "+ID);
 			rs.next();

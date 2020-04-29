@@ -1,8 +1,10 @@
 package dao;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import database.dbConnect;
+import domains.Customer;
 import domains.Product;
 
 public class ProductDao implements Dao<Product>{
@@ -13,48 +15,38 @@ public class ProductDao implements Dao<Product>{
 		this.stmt = db.createStatement();
 	}
 
-	public void Create(Product product) {
+	public Product Create(Product product) {
 		// TODO Auto-generated method stub
 		String sqlInsert = "Insert into Products (name, price, stock) values('"+ product.getName()+ "',"
 				+ product.getPrice()+ ","+ product.getStock()+")";
 				
 				try {
 					stmt.executeUpdate(sqlInsert);
+					return readLatest();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+		return null;
 	}
 
-	public void Read() {
-		// TODO Auto-generated method stub
-		
-		String sql2 = "SELECT * from Products";
-		ResultSet rs = null;
-		
+	
+	public ArrayList<Product> Read() {
 		try {
-			rs = stmt.executeQuery(sql2);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
+			ResultSet rs = stmt.executeQuery("SELECT * FROM products");
+			ArrayList<Product> products = new ArrayList<Product>();
 			while(rs.next()) {
-				int id1 = rs.getInt("product_id");
-				String name1 = rs.getString("name");
-				double price = rs.getDouble("price");
-				int stock = rs.getInt("stock");
-				System.out.println("id: "+id1+ " |name: "+name1+" |price: "+ price+ " |stock: "+stock);
+				products.add(getProduct(rs));
 			}
+			return products;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		return new ArrayList<Product>();
 	}
 
-	public void Update(int id, String attribute, Product product) {
+	public Product Update(int id, String attribute, Product product) {
 		// TODO Auto-generated method stub
 		String sql = "";
 		
@@ -72,10 +64,12 @@ public class ProductDao implements Dao<Product>{
 		
 		try {
 			stmt.executeUpdate(sql);
+			return readById(id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 		
 	}
 
@@ -89,6 +83,39 @@ public class ProductDao implements Dao<Product>{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public Product getProduct(ResultSet rs) throws SQLException {
+		int ID = rs.getInt("product_id");
+		String name = rs.getString("name");
+		double price = rs.getDouble("price");
+		int stock = rs.getInt("stock");
+		
+		return new Product(ID,name,price,stock);
+	}
+	
+	public Product readLatest() {
+		try {
+			ResultSet rs = stmt.executeQuery("SELECT * FROM products order by product_id limit 1");
+			rs.next();
+			return getProduct(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Product readById(int ID) {
+		try {
+			ResultSet rs = stmt.executeQuery("SELECT * FROM products where product_id = "+ID);
+			rs.next();
+			return getProduct(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 		
 	
