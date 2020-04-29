@@ -9,7 +9,7 @@ public class ProductController implements CrudController {
 	
 	private CrudService<Product> productService;
 	
-	public ProductController() {
+	public ProductController(CrudService<Product> productService) {
 		this.productService = productService;
 	}
 
