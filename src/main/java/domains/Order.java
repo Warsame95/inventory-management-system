@@ -9,7 +9,7 @@ public class Order {
 	private double Price;
 	
 	
-	public Order (int OrderId, int CustomerId, int ProductId, int Quantity, double Price) {
+	public Order (int OrderId, int ProductId, int CustomerId, int Quantity, double Price) {
 		this.OrderId = OrderId;
 		this.CustomerId = CustomerId;
 		this.ProductId = ProductId;
@@ -17,7 +17,7 @@ public class Order {
 		this.Price = Price;
 	}
 	
-	public Order(int OrderId, int CustomerId, int ProductId, int Quantity) {
+	public Order(int OrderId, int ProductId, int CustomerId, int Quantity) {
 		this.OrderId = OrderId;
 		this.CustomerId = CustomerId;
 		this.ProductId = ProductId;

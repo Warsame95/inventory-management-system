@@ -1,9 +1,11 @@
 package dao;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import database.dbConnect;
 import domains.Order;
+import domains.Product;
 
 public class OrderDao implements Dao<Order>{
 	
@@ -13,7 +15,7 @@ public class OrderDao implements Dao<Order>{
 		this.stmt = db.createStatement();
 	}
 
-	public void Create(Order order) {
+	public Order Create(Order order) {
 		// TODO Auto-generated method stub
 		
 		String sqlInsert = "Insert into Orders (product_id, customer_id, price, quantity) values("+ order.getProductId()+ ","
@@ -21,43 +23,33 @@ public class OrderDao implements Dao<Order>{
 				
 				try {
 					stmt.executeUpdate(sqlInsert);
-					System.out.println("Order Created");
+					return readLatest();
+					
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		
+		return null;
 	}
 
-	public void Read() {
-		// TODO Auto-generated method stub
-		String sql2 = "SELECT * from Orders";
-		ResultSet rs = null;
-		
+	
+	
+	public ArrayList<Order> Read() {
 		try {
-			rs = stmt.executeQuery(sql2);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
+			ResultSet rs = stmt.executeQuery("SELECT * FROM orders");
+			ArrayList<Order> orders = new ArrayList<Order>();
 			while(rs.next()) {
-				int order_id = rs.getInt("order_id");
-				int product_id = rs.getInt("product_id");
-				int customer_id = rs.getInt("customer_id");
-				int quantity = rs.getInt("quantity");
-				double price = rs.getDouble("price");
-				System.out.println("order_id: "+order_id+ " |product_id: "+product_id+" |customer_id: "+ customer_id+ " |quantity: "+quantity+" |price: "+price);
+				orders.add(getOrder(rs));
 			}
+			return orders;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		return new ArrayList<Order>();
 	}
 
-	public void Update(int id, String attribute, Order order) {
+	public Order Update(int id, String attribute, Order order) {
 		// TODO Auto-generated method stub
 		
 		String sql = "";
@@ -77,10 +69,12 @@ public class OrderDao implements Dao<Order>{
 		
 		try {
 			stmt.executeUpdate(sql);
+			return readById(id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	public void Delete(int order_id) {
@@ -94,6 +88,39 @@ public class OrderDao implements Dao<Order>{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public Order getOrder(ResultSet rs) throws SQLException {
+		int ID = rs.getInt("order_id");
+		int prodID = rs.getInt("product_id");
+		int cusID = rs.getInt("customer_id");
+		int quantity = rs.getInt("quantity");
+		
+		return new Order(ID,cusID,prodID,quantity);
+	}
+	
+	public Order readLatest() {
+		try {
+			ResultSet rs = stmt.executeQuery("SELECT * FROM orders order by order_id limit 1");
+			rs.next();
+			return getOrder(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Order readById(int ID) {
+		try {
+			ResultSet rs = stmt.executeQuery("SELECT * FROM orders where order_id = "+ID);
+			rs.next();
+			return getOrder(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
