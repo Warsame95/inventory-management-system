@@ -17,4 +17,8 @@ public class Utils {
 	public static Integer getInt() {
 		return Integer.valueOf(getInput());
 	}
+	
+	public static Double getDouble() {
+		return Double.valueOf(getInput());
+	}
 }
