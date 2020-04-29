@@ -1,4 +1,4 @@
-package dao;
+package domains;
 
 public class Customer {
 	
@@ -13,6 +13,13 @@ public class Customer {
 		this.Email = Email;
 		this.Address = Address;
 	}
+	
+	public Customer(String Name, String Email, String Address) {
+		this.Name = Name;
+		this.Email = Email;
+		this.Address = Address;
+	}
+	
 	
 	
 	public int getID() {

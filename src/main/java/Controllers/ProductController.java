@@ -1,8 +1,8 @@
 package Controllers;
 
 import Services.CrudService;
-import dao.Order;
-import dao.Product;
+import domains.Order;
+import domains.Product;
 import utils.Utils;
 
 public class ProductController implements CrudController {

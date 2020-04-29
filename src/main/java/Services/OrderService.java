@@ -1,7 +1,7 @@
 package Services;
 
 import dao.Dao;
-import dao.Order;
+import domains.Order;
 
 public class OrderService implements CrudService<Order> {
 	

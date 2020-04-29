@@ -13,10 +13,10 @@ import org.junit.Test;
 
 import com.mysql.jdbc.Connection;
 
-import dao.Customer;
 import dao.CustomerDao;
 import dao.Dao;
 import database.dbConnect;
+import domains.Customer;
 
 public class CustomerDaoTest {
 	

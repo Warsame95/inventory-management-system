@@ -1,4 +1,4 @@
-package dao;
+package domains;
 
 public class Order {
 	
@@ -21,6 +21,12 @@ public class Order {
 		this.OrderId = OrderId;
 		this.CustomerId = CustomerId;
 		this.ProductId = ProductId;
+		this.Quantity = Quantity;
+	}
+	
+	public Order(int ProductId, int CustomerId, int Quantity) {
+		this.ProductId = ProductId;
+		this.CustomerId = CustomerId;
 		this.Quantity = Quantity;
 	}
 

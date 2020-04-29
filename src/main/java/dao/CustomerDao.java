@@ -2,6 +2,7 @@ package dao;
 
 
 import database.dbConnect;
+import domains.Customer;
 import utils.Utils;
 
 import java.sql.*;
@@ -16,7 +17,7 @@ public class CustomerDao implements Dao<Customer> {
 	
 	public void Create(Customer customer) {
 		// TODO Auto-generated method stub
-		String sqlInsert = "Insert into Customers values("+customer.getID()+",'"+ customer.getName()+ "','"
+		String sqlInsert = "Insert into Customers (name, email, address) values('" + customer.getName()+ "','"
 		+ customer.getEmail()+ "','"+ customer.getAddress()+"')";
 		
 		try {

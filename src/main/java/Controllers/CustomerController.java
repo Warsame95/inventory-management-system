@@ -1,9 +1,9 @@
 package Controllers;
 
 import Services.CrudService;
-import dao.Customer;
 import dao.CustomerDao;
 import database.dbConnect;
+import domains.Customer;
 import utils.Utils;
 
 public class CustomerController implements CrudController{
@@ -18,8 +18,6 @@ public class CustomerController implements CrudController{
 	@Override
 	public void Create() {
 		// TODO Auto-generated method stub
-		System.out.println("Enter the ID of the Customer you want to create");
-		int ID = Utils.getInt();
 		
 		System.out.println("Enter the Name of the Customer");
 		String name = Utils.getInput();
@@ -30,7 +28,7 @@ public class CustomerController implements CrudController{
 		System.out.println("Enter the Address of the Customer");
 		String address = Utils.getInput();
 		
-		customerService.Create(new Customer(ID,name,email,address));
+		customerService.Create(new Customer(name,email,address));
 		System.out.println("Customer created");
 	}
 

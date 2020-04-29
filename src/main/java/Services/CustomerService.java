@@ -1,7 +1,7 @@
 package Services;
 
-import dao.Customer;
 import dao.Dao;
+import domains.Customer;
 
 public class CustomerService implements CrudService<Customer> {
 	

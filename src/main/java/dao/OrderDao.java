@@ -3,6 +3,7 @@ package dao;
 import java.sql.*;
 
 import database.dbConnect;
+import domains.Order;
 
 public class OrderDao implements Dao<Order>{
 	
@@ -15,7 +16,7 @@ public class OrderDao implements Dao<Order>{
 	public void Create(Order order) {
 		// TODO Auto-generated method stub
 		
-		String sqlInsert = "Insert into Orders values("+order.getOrderId()+","+ order.getProductId()+ ","
+		String sqlInsert = "Insert into Orders (product_id, customer_id, price, quantity) values("+ order.getProductId()+ ","
 				+ order.getCustomerId()+ ","+ order.getQuantity()+ ","+ order.getPrice() +")";
 				
 				try {

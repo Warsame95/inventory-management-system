@@ -1,7 +1,7 @@
 package Controllers;
 
 import Services.CrudService;
-import dao.Order;
+import domains.Order;
 import utils.Utils;
 
 public class OrderController implements CrudController {
@@ -15,8 +15,6 @@ public class OrderController implements CrudController {
 	@Override
 	public void Create() {
 		// TODO Auto-generated method stub
-		System.out.println("Enter the Order Id of the Order you want to create");
-		int orderID = Utils.getInt();
 		
 		System.out.println("Enter Customer ID");
 		int customerID = Utils.getInt();
@@ -27,8 +25,8 @@ public class OrderController implements CrudController {
 		System.out.println("Enter the Quantity ordered");
 		int quantity = Utils.getInt();
 		
-		orderService.Create(new Order(orderID,customerID,productID,quantity));
-	}
+		orderService.Create(new Order(productID, customerID ,quantity));
+	} 
 
 	@Override
 	public void Read() {

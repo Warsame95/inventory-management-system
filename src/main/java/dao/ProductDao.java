@@ -3,6 +3,7 @@ package dao;
 import java.sql.*;
 
 import database.dbConnect;
+import domains.Product;
 
 public class ProductDao implements Dao<Product>{
 	
@@ -14,7 +15,7 @@ public class ProductDao implements Dao<Product>{
 
 	public void Create(Product product) {
 		// TODO Auto-generated method stub
-		String sqlInsert = "Insert into Products values("+product.getID()+",'"+ product.getName()+ "',"
+		String sqlInsert = "Insert into Products (name, price, stock) values('"+ product.getName()+ "',"
 				+ product.getPrice()+ ","+ product.getStock()+")";
 				
 				try {

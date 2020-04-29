@@ -1,4 +1,4 @@
-package dao;
+package domains;
 
 public class Product {
 	private int ID;
@@ -8,6 +8,12 @@ public class Product {
 	
 	public Product(int ID, String Name, double Price, int Stock) {
 		this.ID = ID;
+		this.Name = Name;
+		this.Price = Price;
+		this.Stock = Stock;
+	}
+	
+	public Product(String Name, double Price, int Stock) {
 		this.Name = Name;
 		this.Price = Price;
 		this.Stock = Stock;
