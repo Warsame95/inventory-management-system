@@ -50,6 +50,11 @@ public class Product {
 	public void setStock(int stock) {
 		Stock = stock;
 	}
+
+	@Override
+	public String toString() {
+		return "[productId= " + ID + ", Name= " + Name + ", Price= " + Price + ", Stock= " + Stock + "]";
+	}
 	
 	
 

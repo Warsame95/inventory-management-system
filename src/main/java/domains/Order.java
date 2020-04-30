@@ -79,6 +79,12 @@ public class Order {
 	public void setPrice(double price) {
 		Price = price;
 	}
+
+	@Override
+	public String toString() {
+		return "[OrderId= " + OrderId + ", CustomerId= " + CustomerId + ", ProductId= " + ProductId + ", Quantity= "
+				+ Quantity + ", Price= " + Price + "]";
+	}
 	
 	
 

@@ -1,5 +1,7 @@
 package Controllers;
 
+import java.util.ArrayList;
+
 import Services.CrudService;
 import dao.CustomerDao;
 import database.dbConnect;
@@ -35,7 +37,10 @@ public class CustomerController implements CrudController{
 	@Override
 	public void Read() {
 		// TODO Auto-generated method stub
-		customerService.Read();
+		ArrayList<Customer> customers = customerService.Read();
+		for (Customer customer: customers) {
+			System.out.println(customer.toString());
+		}
 	}
 
 	@Override

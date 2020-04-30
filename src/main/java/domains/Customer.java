@@ -46,6 +46,13 @@ public class Customer {
 	public void setAddress(String address) {
 		Address = address;
 	}
+
+	@Override
+	public String toString() {
+		return "[customerId= " + ID + ", Name= " + Name + ", Email= " + Email + ", Address= " + Address + "]";
+	}
+	
+	
 	
 	
 	

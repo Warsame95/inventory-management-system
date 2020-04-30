@@ -1,5 +1,7 @@
 package Controllers;
 
+import java.util.ArrayList;
+
 import Services.CrudService;
 import domains.Order;
 import domains.Product;
@@ -35,7 +37,10 @@ public class ProductController implements CrudController {
 	@Override
 	public void Read() {
 		// TODO Auto-generated method stub
-		productService.Read();
+		ArrayList<Product> products = productService.Read();
+		for (Product product: products) {
+			System.out.println(product.toString());
+		}
 	}
 
 	@Override

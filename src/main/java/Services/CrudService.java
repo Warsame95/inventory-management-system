@@ -1,10 +1,12 @@
 package Services;
 
+import java.util.ArrayList;
+
 public interface CrudService<T> {
 	
 	public void Create(T t);
 	
-	public void Read();
+	public ArrayList<T> Read();
 	
 	public void Update(int ID, String attribute,T t);
 	

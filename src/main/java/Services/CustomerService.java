@@ -1,5 +1,7 @@
 package Services;
 
+import java.util.ArrayList;
+
 import dao.Dao;
 import domains.Customer;
 
@@ -18,9 +20,9 @@ public class CustomerService implements CrudService<Customer> {
 	}
 
 	@Override
-	public void Read() {
+	public ArrayList<Customer> Read() {
 		// TODO Auto-generated method stub
-		customerDao.Read();
+		return customerDao.Read();
 	}
 
 	@Override
