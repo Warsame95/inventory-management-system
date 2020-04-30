@@ -7,18 +7,18 @@ public class Utils {
 	private final static Scanner SCANNER = new Scanner(System.in);
 	
 	
-	private Utils() {}
+	public Utils() {}
 	
 	
-	public static String getInput() {
+	public String getInput() {
 		return SCANNER.nextLine();
 	}
 	
-	public static Integer getInt() {
+	public Integer getInt() {
 		return Integer.valueOf(getInput());
 	}
 	
-	public static Double getDouble() {
+	public Double getDouble() {
 		return Double.valueOf(getInput());
 	}
 }

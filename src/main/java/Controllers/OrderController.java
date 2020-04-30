@@ -10,8 +10,11 @@ public class OrderController implements CrudController<Order> {
 	
 	private CrudService<Order> orderService;
 	
-	public OrderController(CrudService<Order> orderService) {
+	Utils utils;
+	
+	public OrderController(CrudService<Order> orderService,  Utils passedUtil) {
 		this.orderService = orderService;
+		this.utils = passedUtil;
 	}
 
 	@Override
@@ -19,13 +22,13 @@ public class OrderController implements CrudController<Order> {
 		// TODO Auto-generated method stub
 		
 		System.out.println("Enter Customer ID");
-		int customerID = Utils.getInt();
+		int customerID = utils.getInt();
 		
 		System.out.println("Enter Product ID");
-		int productID = Utils.getInt();
+		int productID = utils.getInt();
 		
 		System.out.println("Enter the Quantity ordered");
-		int quantity = Utils.getInt();
+		int quantity = utils.getInt();
 		
 		System.out.println("Order created");
 		return orderService.Create(new Order(productID, customerID ,quantity));
@@ -45,13 +48,13 @@ public class OrderController implements CrudController<Order> {
 	public Order Update() {
 		// TODO Auto-generated method stub
 		System.out.println("Enter ID or order you want to update");
-		int ID = Utils.getInt();
+		int ID = utils.getInt();
 		
 		System.out.println("Enter the attribute you want to update i.e customerid, productid or quantity");
-		String attribute = Utils.getInput().toUpperCase();
+		String attribute = utils.getInput().toUpperCase();
 		
 		System.out.println("Enter the new value");
-		int newValue = Utils.getInt();
+		int newValue = utils.getInt();
 		
 		switch(attribute) {
 		case "CUSTOMERID":
@@ -69,7 +72,7 @@ public class OrderController implements CrudController<Order> {
 	public void Delete() {
 		// TODO Auto-generated method stub
 		System.out.println("Enter ID of order you would like to delete");
-		int ID = Utils.getInt();
+		int ID = utils.getInt();
 		orderService.Delete(ID);
 		
 	}

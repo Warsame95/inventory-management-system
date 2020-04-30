@@ -11,24 +11,27 @@ public class ProductController implements CrudController<Product> {
 	
 	private CrudService<Product> productService;
 	
-	public ProductController(CrudService<Product> productService) {
+	Utils utils;
+	
+	public ProductController(CrudService<Product> productService, Utils passedUtil) {
 		this.productService = productService;
+		this.utils = passedUtil;
 	}
 
 	@Override
 	public Product Create() {
 		// TODO Auto-generated method stub
 		System.out.println("Enter ID of Products you would like to add");
-		int ID = Utils.getInt();
+		int ID = utils.getInt();
 		
 		System.out.println("Enter name of product");
-		String name = Utils.getInput();
+		String name = utils.getInput();
 		
 		System.out.println("Enter the price of the product");
-		double price = Utils.getDouble();
+		double price = utils.getDouble();
 		
 		System.out.println("Enter the amount of stock of the product");
-		int stock = Utils.getInt();
+		int stock = utils.getInt();
 		
 		System.out.println("Product created");
 		return productService.Create(new Product(ID, name, price, stock));
@@ -49,13 +52,13 @@ public class ProductController implements CrudController<Product> {
 	public Product Update() {
 		// TODO Auto-generated method stub
 		System.out.println("Enter ID of product you want to update");
-		int ID = Utils.getInt();
+		int ID = utils.getInt();
 		
 		System.out.println("Enter the attribute you want to update i.e name, price or stock");
-		String attribute = Utils.getInput().toUpperCase();
+		String attribute = utils.getInput().toUpperCase();
 		
 		System.out.println("Enter the new value");
-		String newValue = Utils.getInput();
+		String newValue = utils.getInput();
 		
 		switch(attribute) {
 		case "NAME":
@@ -72,7 +75,7 @@ public class ProductController implements CrudController<Product> {
 	public void Delete() {
 		// TODO Auto-generated method stub
 		System.out.println("Enter the ID of the Product you want to delete");
-		int ID = Utils.getInt();
+		int ID = utils.getInt();
 		
 		productService.Delete(ID);
 	}

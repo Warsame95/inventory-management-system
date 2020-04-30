@@ -12,9 +12,13 @@ public class CustomerController implements CrudController<Customer>{
 	
 	private CrudService<Customer> customerService;
 	
-	public CustomerController(CrudService<Customer> customerService) {
+	Utils utils;
+
+	public CustomerController(CrudService<Customer> customerService, Utils passedUtil) {
+		this.utils = passedUtil;
 		this.customerService = customerService;
 	}
+	
 	
 
 	@Override
@@ -22,13 +26,13 @@ public class CustomerController implements CrudController<Customer>{
 		// TODO Auto-generated method stub
 		
 		System.out.println("Enter the Name of the Customer");
-		String name = Utils.getInput();
+		String name = utils.getInput();
 		
 		System.out.println("Enter the email of the Customer");
-		String email = Utils.getInput();
+		String email = utils.getInput();
 		
 		System.out.println("Enter the Address of the Customer");
-		String address = Utils.getInput();
+		String address = utils.getInput();
 		
 		System.out.println("Customer created");
 		return customerService.Create(new Customer(name,email,address));
@@ -49,13 +53,13 @@ public class CustomerController implements CrudController<Customer>{
 	public Customer Update() {
 		// TODO Auto-generated method stub
 		System.out.println("Enter ID of Customer you want to update");
-		int ID = Utils.getInt();
+		int ID = utils.getInt();
 		
 		System.out.println("Enter attribute you want to update i.e Name, Email or Address");
-		String attribute = Utils.getInput().toUpperCase();
+		String attribute = utils.getInput().toUpperCase();
 		
 		System.out.println("Enter new Value");
-		String newValue = Utils.getInput();
+		String newValue = utils.getInput();
 		
 		switch(attribute) {
 		case "NAME": 
@@ -74,7 +78,7 @@ public class CustomerController implements CrudController<Customer>{
 	public void Delete() {
 		// TODO Auto-generated method stub
 		System.out.println("Enter ID of Customer you would like to delete");
-		int ID = Utils.getInt();
+		int ID = utils.getInt();
 		customerService.Delete(ID);
 	}
 	
