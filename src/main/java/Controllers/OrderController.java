@@ -31,7 +31,9 @@ public class OrderController implements CrudController<Order> {
 		int quantity = utils.getInt();
 		
 		System.out.println("Order created");
-		return orderService.Create(new Order(productID, customerID ,quantity));
+		Order ordTemp = new Order(productID, customerID, quantity);
+		orderService.Create(ordTemp);
+		return ordTemp;
 	} 
 
 	@Override

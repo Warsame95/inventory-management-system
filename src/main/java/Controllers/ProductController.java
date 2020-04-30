@@ -34,8 +34,9 @@ public class ProductController implements CrudController<Product> {
 		int stock = utils.getInt();
 		
 		System.out.println("Product created");
-		return productService.Create(new Product(ID, name, price, stock));
-		
+		Product prodTemp = new Product(ID, name, price, stock);
+		productService.Create(new Product(ID, name, price, stock));
+		return prodTemp;
 	}
 
 	@Override

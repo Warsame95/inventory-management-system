@@ -35,7 +35,9 @@ public class CustomerController implements CrudController<Customer>{
 		String address = utils.getInput();
 		
 		System.out.println("Customer created");
-		return customerService.Create(new Customer(name,email,address));
+		Customer cusTemp = new Customer(name,email,address);
+		customerService.Create(cusTemp);
+		return cusTemp;
 
 	}
 
