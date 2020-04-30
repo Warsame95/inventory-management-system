@@ -54,6 +54,7 @@ public class CustomerController implements CrudController<Customer>{
 	@Override
 	public Customer Update() {
 		// TODO Auto-generated method stub
+		Customer cusTemp; 
 		System.out.println("Enter ID of Customer you want to update");
 		int ID = utils.getInt();
 		
@@ -64,12 +65,18 @@ public class CustomerController implements CrudController<Customer>{
 		String newValue = utils.getInput();
 		
 		switch(attribute) {
-		case "NAME": 
-			return customerService.Update(ID, attribute, new Customer(ID,newValue,null, null));
+		case "NAME":
+			cusTemp = new Customer(ID,newValue,null, null);
+			customerService.Update(ID, attribute, cusTemp);
+			return cusTemp;
 		case "EMAIL":
-			return customerService.Update(ID, attribute, new Customer(ID,null,newValue, null));
+			cusTemp = new Customer(ID,null,newValue, null);
+			customerService.Update(ID, attribute, cusTemp);
+			return cusTemp;
 		case "ADDRESS":
-			return customerService.Update(ID, attribute, new Customer(ID,null,null, newValue));
+			cusTemp = new Customer(ID,null,null, newValue);
+			customerService.Update(ID, attribute, cusTemp);
+			return cusTemp;
 		}
 		return null;
 		

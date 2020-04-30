@@ -49,6 +49,7 @@ public class OrderController implements CrudController<Order> {
 	@Override
 	public Order Update() {
 		// TODO Auto-generated method stub
+		Order ordTemp;
 		System.out.println("Enter ID or order you want to update");
 		int ID = utils.getInt();
 		
@@ -60,11 +61,17 @@ public class OrderController implements CrudController<Order> {
 		
 		switch(attribute) {
 		case "CUSTOMERID":
-			return orderService.Update(ID, attribute, new Order(ID, newValue, 0,0));
+			ordTemp = new Order(ID, newValue, 0,0);
+			orderService.Update(ID, attribute, ordTemp);
+			return ordTemp;
 		case "PRODUCTID":
-			return orderService.Update(ID, attribute, new Order(ID,0, newValue,0));
+			ordTemp = new Order(ID,0, newValue,0);
+			orderService.Update(ID, attribute, new Order(ID,0, newValue,0));
+			return ordTemp;
 		case "QUANTITY":
-			return orderService.Update(ID, attribute, new Order(ID,0, 0, newValue));
+			ordTemp = new Order(ID,0, 0, newValue);
+			orderService.Update(ID, attribute, new Order(ID,0, 0, newValue));
+			return ordTemp;
 		}
 		return null;
 		

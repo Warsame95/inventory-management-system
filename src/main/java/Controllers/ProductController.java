@@ -51,6 +51,7 @@ public class ProductController implements CrudController<Product> {
 
 	@Override
 	public Product Update() {
+		Product prodTemp;
 		// TODO Auto-generated method stub
 		System.out.println("Enter ID of product you want to update");
 		int ID = utils.getInt();
@@ -63,11 +64,17 @@ public class ProductController implements CrudController<Product> {
 		
 		switch(attribute) {
 		case "NAME":
-			return productService.Update(ID, attribute, new Product(ID, newValue, 0, 0));
+			prodTemp = new Product(ID, newValue, 0, 0);
+			productService.Update(ID, attribute, new Product(ID, newValue, 0, 0));
+			return prodTemp;
 		case "PRICE":
-			return productService.Update(ID, attribute, new Product(ID,null, Double.valueOf(newValue),0));
+			prodTemp = new Product(ID,null, Double.valueOf(newValue),0);
+			productService.Update(ID, attribute, prodTemp);
+			return prodTemp;
 		case "STOCK":
-			return productService.Update(ID, attribute, new Product(ID,null, 0, Integer.valueOf(newValue)));
+			prodTemp = new Product(ID,null, 0, Integer.valueOf(newValue));
+			productService.Update(ID, attribute, prodTemp);
+			return prodTemp;
 		}
 		return null;
 	}
