@@ -2,11 +2,14 @@ package ControllersTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import Controllers.CustomerController;
 import Services.CustomerService;
@@ -60,11 +63,20 @@ public class CustomerControllerTest {
 		Utils utils = mock(Utils.class);
 		CustomerController customerController = new CustomerController(customerService,utils);
 		
+		when(utils.getInt()).thenReturn(2);
+		when(utils.getInput()).thenReturn("name").thenReturn("adam");
 		
+		Customer returnedCustomer = new Customer("adam", "john@gmail.com", "123 high road");
+		assertEquals(returnedCustomer.getName(), customerController.Update().getName());
 	}
 	
+	@Test
 	public void DeleteTest() {
-		
+		CustomerService customerService = mock(CustomerService.class);
+		Utils utils = mock(Utils.class);
+		CustomerController customerController = new CustomerController(customerService,utils);
+		customerController.Delete();
+		verify(customerService,times(1)).Delete(0);
 	}
 	
 	
