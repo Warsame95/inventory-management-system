@@ -7,7 +7,7 @@ import domains.Order;
 import domains.Product;
 import utils.Utils;
 
-public class ProductController implements CrudController {
+public class ProductController implements CrudController<Product> {
 	
 	private CrudService<Product> productService;
 	
@@ -16,7 +16,7 @@ public class ProductController implements CrudController {
 	}
 
 	@Override
-	public void Create() {
+	public Product Create() {
 		// TODO Auto-generated method stub
 		System.out.println("Enter ID of Products you would like to add");
 		int ID = Utils.getInt();
@@ -30,21 +30,23 @@ public class ProductController implements CrudController {
 		System.out.println("Enter the amount of stock of the product");
 		int stock = Utils.getInt();
 		
-		productService.Create(new Product(ID, name, price, stock));
+		System.out.println("Product created");
+		return productService.Create(new Product(ID, name, price, stock));
 		
 	}
 
 	@Override
-	public void Read() {
+	public ArrayList<Product> Read() {
 		// TODO Auto-generated method stub
 		ArrayList<Product> products = productService.Read();
 		for (Product product: products) {
 			System.out.println(product.toString());
 		}
+		return products;
 	}
 
 	@Override
-	public void Update() {
+	public Product Update() {
 		// TODO Auto-generated method stub
 		System.out.println("Enter ID of product you want to update");
 		int ID = Utils.getInt();
@@ -57,15 +59,13 @@ public class ProductController implements CrudController {
 		
 		switch(attribute) {
 		case "NAME":
-			productService.Update(ID, attribute, new Product(ID, newValue, 0, 0));
-			break;
+			return productService.Update(ID, attribute, new Product(ID, newValue, 0, 0));
 		case "PRICE":
-			productService.Update(ID, attribute, new Product(ID,null, Double.valueOf(newValue),0));
-			break;
+			return productService.Update(ID, attribute, new Product(ID,null, Double.valueOf(newValue),0));
 		case "STOCK":
-			productService.Update(ID, attribute, new Product(ID,null, 0, Integer.valueOf(newValue)));
-			break;
+			return productService.Update(ID, attribute, new Product(ID,null, 0, Integer.valueOf(newValue)));
 		}
+		return null;
 	}
 
 	@Override

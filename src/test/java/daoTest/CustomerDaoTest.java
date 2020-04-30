@@ -1,4 +1,4 @@
-package doaTest;
+package daoTest;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;

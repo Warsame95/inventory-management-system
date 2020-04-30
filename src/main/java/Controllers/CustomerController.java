@@ -8,7 +8,7 @@ import database.dbConnect;
 import domains.Customer;
 import utils.Utils;
 
-public class CustomerController implements CrudController{
+public class CustomerController implements CrudController<Customer>{
 	
 	private CrudService<Customer> customerService;
 	
@@ -18,7 +18,7 @@ public class CustomerController implements CrudController{
 	
 
 	@Override
-	public void Create() {
+	public Customer Create() {
 		// TODO Auto-generated method stub
 		
 		System.out.println("Enter the Name of the Customer");
@@ -30,21 +30,23 @@ public class CustomerController implements CrudController{
 		System.out.println("Enter the Address of the Customer");
 		String address = Utils.getInput();
 		
-		customerService.Create(new Customer(name,email,address));
 		System.out.println("Customer created");
+		return customerService.Create(new Customer(name,email,address));
+
 	}
 
 	@Override
-	public void Read() {
+	public ArrayList<Customer> Read() {
 		// TODO Auto-generated method stub
 		ArrayList<Customer> customers = customerService.Read();
 		for (Customer customer: customers) {
 			System.out.println(customer.toString());
 		}
+		return customers;
 	}
 
 	@Override
-	public void Update() {
+	public Customer Update() {
 		// TODO Auto-generated method stub
 		System.out.println("Enter ID of Customer you want to update");
 		int ID = Utils.getInt();
@@ -57,15 +59,13 @@ public class CustomerController implements CrudController{
 		
 		switch(attribute) {
 		case "NAME": 
-			customerService.Update(ID, attribute, new Customer(ID,newValue,null, null));
-			break;
+			return customerService.Update(ID, attribute, new Customer(ID,newValue,null, null));
 		case "EMAIL":
-			customerService.Update(ID, attribute, new Customer(ID,null,newValue, null));
-		    break;
+			return customerService.Update(ID, attribute, new Customer(ID,null,newValue, null));
 		case "ADDRESS":
-			customerService.Update(ID, attribute, new Customer(ID,null,null, newValue));
-			break;
+			return customerService.Update(ID, attribute, new Customer(ID,null,null, newValue));
 		}
+		return null;
 		
 
 	}

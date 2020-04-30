@@ -14,9 +14,9 @@ public class ProductService implements CrudService<Product> {
 	}
 
 	@Override
-	public void Create(Product product) {
+	public Product Create(Product product) {
 		// TODO Auto-generated method stub
-		productDao.Create(product);
+		return productDao.Create(product);
 	}
 
 	@Override
@@ -26,9 +26,9 @@ public class ProductService implements CrudService<Product> {
 	}
 
 	@Override
-	public void Update(int ID, String attribute, Product product) {
+	public Product Update(int ID, String attribute, Product product) {
 		// TODO Auto-generated method stub
-		productDao.Update(ID, attribute, product);
+		return productDao.Update(ID, attribute, product);
 	}
 
 	@Override

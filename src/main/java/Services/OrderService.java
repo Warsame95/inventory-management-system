@@ -14,9 +14,9 @@ public class OrderService implements CrudService<Order> {
 	}
 
 	@Override
-	public void Create(Order order) {
+	public Order Create(Order order) {
 		// TODO Auto-generated method stub
-		orderDao.Create(order);
+		return orderDao.Create(order);
 	}
 
 	@Override
@@ -26,9 +26,9 @@ public class OrderService implements CrudService<Order> {
 	}
 
 	@Override
-	public void Update(int ID, String attribute, Order order) {
+	public Order Update(int ID, String attribute, Order order) {
 		// TODO Auto-generated method stub
-		orderDao.Update(ID, attribute, order);
+		return orderDao.Update(ID, attribute, order);
 	}
 
 	@Override

@@ -1,14 +1,16 @@
 package Controllers;
 
+import java.util.ArrayList;
+
 import database.dbConnect;
 
-public interface CrudController {
+public interface CrudController<T> {
 	
-	public void Create();
+	public T Create();
 	
-	public void Read();
+	public ArrayList<T> Read();
 	
-	public void Update();
+	public T Update();
 	
 	public void Delete();
 	

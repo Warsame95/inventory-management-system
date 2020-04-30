@@ -14,9 +14,9 @@ public class CustomerService implements CrudService<Customer> {
 	}
 
 	@Override
-	public void Create(Customer customer) {
+	public Customer Create(Customer customer) {
 		// TODO Auto-generated method stub
-		customerDao.Create(customer);
+		return customerDao.Create(customer);
 	}
 
 	@Override
@@ -26,9 +26,9 @@ public class CustomerService implements CrudService<Customer> {
 	}
 
 	@Override
-	public void Update(int ID, String attribute, Customer customer) {
+	public Customer Update(int ID, String attribute, Customer customer) {
 		// TODO Auto-generated method stub
-		customerDao.Update(ID, attribute, customer);
+		return customerDao.Update(ID, attribute, customer);
 	}
 
 	@Override

@@ -40,6 +40,11 @@ public class Ims {
 				System.out.println("Customers \nOrders \nProducts");
 				System.out.println("Enter STOP now, if you are finished");
 				table = Utils.getInput().toUpperCase();
+				
+				System.out.println("What would you like to do with " + table + ":");
+				System.out.println("Create \nRead \nUpdate \nDelete");
+				action = Utils.getInput().toUpperCase();
+				
 				break;
 			case "ORDERS":
 				OrderController oc = new OrderController(new OrderService(new OrderDao(db)));
@@ -48,6 +53,10 @@ public class Ims {
 				System.out.println("Customers \nOrders \nProducts");
 				System.out.println("Enter STOP now, if you are finished");
 				table = Utils.getInput().toUpperCase();
+				
+				System.out.println("What would you like to do with " + table + ":");
+				System.out.println("Create \nRead \nUpdate \nDelete");
+				action = Utils.getInput().toUpperCase();
 				break;
 			case "PRODUCTS":
 				ProductController pc = new ProductController(new ProductService(new ProductDao(db)));
@@ -56,6 +65,10 @@ public class Ims {
 				System.out.println("Customers \nOrders \nProducts");
 				System.out.println("Enter STOP now, if you are finished");
 				table = Utils.getInput().toUpperCase();
+				
+				System.out.println("What would you like to do with " + table + ":");
+				System.out.println("Create \nRead \nUpdate \nDelete");
+				action = Utils.getInput().toUpperCase();
 				break;
 			case "STOP":
 				bool = false;

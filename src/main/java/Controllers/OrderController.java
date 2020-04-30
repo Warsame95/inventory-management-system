@@ -6,7 +6,7 @@ import Services.CrudService;
 import domains.Order;
 import utils.Utils;
 
-public class OrderController implements CrudController {
+public class OrderController implements CrudController<Order> {
 	
 	private CrudService<Order> orderService;
 	
@@ -15,7 +15,7 @@ public class OrderController implements CrudController {
 	}
 
 	@Override
-	public void Create() {
+	public Order Create() {
 		// TODO Auto-generated method stub
 		
 		System.out.println("Enter Customer ID");
@@ -27,20 +27,22 @@ public class OrderController implements CrudController {
 		System.out.println("Enter the Quantity ordered");
 		int quantity = Utils.getInt();
 		
-		orderService.Create(new Order(productID, customerID ,quantity));
+		System.out.println("Order created");
+		return orderService.Create(new Order(productID, customerID ,quantity));
 	} 
 
 	@Override
-	public void Read() {
+	public ArrayList<Order> Read() {
 		// TODO Auto-generated method stub
 		ArrayList<Order> orders = orderService.Read();
 		for (Order order: orders) {
 			System.out.println(order.toString());
 		}
+		return orders;
 	}
 
 	@Override
-	public void Update() {
+	public Order Update() {
 		// TODO Auto-generated method stub
 		System.out.println("Enter ID or order you want to update");
 		int ID = Utils.getInt();
@@ -53,15 +55,13 @@ public class OrderController implements CrudController {
 		
 		switch(attribute) {
 		case "CUSTOMERID":
-			orderService.Update(ID, attribute, new Order(ID, newValue, 0,0));
-			break;
+			return orderService.Update(ID, attribute, new Order(ID, newValue, 0,0));
 		case "PRODUCTID":
-			orderService.Update(ID, attribute, new Order(ID,0, newValue,0));
-			break;
+			return orderService.Update(ID, attribute, new Order(ID,0, newValue,0));
 		case "QUANTITY":
-			orderService.Update(ID, attribute, new Order(ID,0, 0, newValue));
-			break;
+			return orderService.Update(ID, attribute, new Order(ID,0, 0, newValue));
 		}
+		return null;
 		
 	}
 
