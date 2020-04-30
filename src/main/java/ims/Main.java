@@ -1,8 +1,10 @@
 package ims;
 
 import Controllers.CustomerController;
+import Controllers.OrderController;
 import Controllers.ProductController;
 import Services.CustomerService;
+import Services.OrderService;
 import Services.ProductService;
 import dao.*;
 import database.dbConnect;
@@ -22,11 +24,14 @@ public class Main {
 		//customer
 		
 		CustomerController cc = new CustomerController(new CustomerService(new CustomerDao(db)));
-		cc.Create();
+		//cc.Create();
 		
-		
-		
-		
+		//
+		OrderController oc = new OrderController(new OrderService(new OrderDao(db)));
+		//oc.Create();
+		//oc.Delete();
+		//oc.Create();
+		oc.Update();
 	}
 
 }

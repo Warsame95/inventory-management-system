@@ -17,9 +17,10 @@ public class OrderDao implements Dao<Order>{
 
 	public Order Create(Order order) {
 		// TODO Auto-generated method stub
+		double totalPrice = getPrice(order.getProductId())*order.getQuantity();
 		
-		String sqlInsert = "Insert into Orders (product_id, customer_id, price, quantity) values("+ order.getProductId()+ ","
-				+ order.getCustomerId()+ ","+ order.getQuantity()+ ","+ order.getPrice() +")";
+		String sqlInsert = "Insert into Orders (product_id, customer_id, quantity, price) values("+ order.getProductId()+ ","
+				+ order.getCustomerId()+ ","+ order.getQuantity()+","+ totalPrice +")";
 				
 				try {
 					stmt.executeUpdate(sqlInsert);
@@ -51,8 +52,9 @@ public class OrderDao implements Dao<Order>{
 
 	public Order Update(int id, String attribute, Order order) {
 		// TODO Auto-generated method stub
-		
+		Order o;
 		String sql = "";
+		String sql2 = "";
 		switch(attribute) {
 		case "PRODUCTID":
 			sql = "UPDATE Orders set product_id = "+ order.getProductId() + " where order_id = "+id;
@@ -65,10 +67,15 @@ public class OrderDao implements Dao<Order>{
 			break;
 		case "QUANTITY":
 			sql = "UPDATE Orders set quantity = "+ order.getQuantity() + " where order_id = "+id;
+			o = readById(id);
+			double price = getPrice(o.getProductId())*order.getQuantity();
+			sql2 = "UPDATE Orders set price = "+ price + " where order_id = "+id;
+			break;
 		}
 		
 		try {
 			stmt.executeUpdate(sql);
+			stmt.executeUpdate(sql2);
 			return readById(id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -96,7 +103,7 @@ public class OrderDao implements Dao<Order>{
 		int cusID = rs.getInt("customer_id");
 		int quantity = rs.getInt("quantity");
 		
-		return new Order(ID,cusID,prodID,quantity);
+		return new Order(ID,prodID,cusID,quantity);
 	}
 	
 	public Order readLatest() {
@@ -122,5 +129,19 @@ public class OrderDao implements Dao<Order>{
 		}
 		return null;
 	}
+	
+	public Double getPrice(int productID) {
+		try {
+			ResultSet rs = stmt.executeQuery("SELECT * FROM products where product_id = "+productID);
+			rs.next();
+			double price = rs.getDouble("price");
+			return price;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 
 }
