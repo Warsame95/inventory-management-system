@@ -21,9 +21,7 @@ public class ProductController implements CrudController<Product> {
 	@Override
 	public Product Create() {
 		// TODO Auto-generated method stub
-		System.out.println("Enter ID of Products you would like to add");
-		int ID = utils.getInt();
-		
+	
 		System.out.println("Enter name of product");
 		String name = utils.getInput();
 		
@@ -34,8 +32,8 @@ public class ProductController implements CrudController<Product> {
 		int stock = utils.getInt();
 		
 		System.out.println("Product created");
-		Product prodTemp = new Product(ID, name, price, stock);
-		productService.Create(new Product(ID, name, price, stock));
+		Product prodTemp = new Product(name, price, stock);
+		productService.Create(new Product(name, price, stock));
 		return prodTemp;
 	}
 
@@ -78,7 +76,7 @@ public class ProductController implements CrudController<Product> {
 		}
 		return null;
 	}
-
+	
 	@Override
 	public void Delete() {
 		// TODO Auto-generated method stub

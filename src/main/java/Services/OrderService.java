@@ -8,7 +8,7 @@ import domains.Order;
 public class OrderService implements CrudService<Order> {
 	
 	Dao<Order> orderDao; 
-	
+
 	public OrderService(Dao<Order> orderDao) {
 		this.orderDao = orderDao;
 	}

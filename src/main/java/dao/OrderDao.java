@@ -14,7 +14,7 @@ public class OrderDao implements Dao<Order>{
 	public OrderDao(dbConnect db) {
 		this.stmt = db.createStatement();
 	}
-
+ 
 	public Order Create(Order order) {
 		// TODO Auto-generated method stub
 		double totalPrice = getPrice(order.getProductId())*order.getQuantity();
@@ -102,8 +102,9 @@ public class OrderDao implements Dao<Order>{
 		int prodID = rs.getInt("product_id");
 		int cusID = rs.getInt("customer_id");
 		int quantity = rs.getInt("quantity");
+		double price = rs.getDouble("price");
 		
-		return new Order(ID,prodID,cusID,quantity);
+		return new Order(ID,prodID,cusID,quantity,price);
 	}
 	
 	public Order readLatest() {

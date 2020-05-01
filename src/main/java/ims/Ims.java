@@ -18,8 +18,9 @@ public class Ims {
 	static final String DB_URL = "jdbc:mysql://localhost:3306/gamedb?useSSL=false";
 	static final String USER = "root";
 	static final String PASS = "Manchester95";
-	
+
 	Utils utils = new Utils();
+
 	public void Start() {
 
 		dbConnect db = new dbConnect(JDBC_DRIVER, DB_URL, USER, PASS);
@@ -35,38 +36,38 @@ public class Ims {
 		while (bool) {
 			switch (table) {
 			case "CUSTOMERS":
-				CustomerController cc = new CustomerController(new CustomerService(new CustomerDao(db)),utils);
+				CustomerController cc = new CustomerController(new CustomerService(new CustomerDao(db)), utils);
 				executeAction(cc, action);
 				System.out.println("What entity would you like to use?");
 				System.out.println("Customers \nOrders \nProducts");
 				System.out.println("Enter STOP now, if you are finished");
 				table = utils.getInput().toUpperCase();
-				
+
 				System.out.println("What would you like to do with " + table + ":");
 				System.out.println("Create \nRead \nUpdate \nDelete");
 				action = utils.getInput().toUpperCase();
-				
+
 				break;
 			case "ORDERS":
-				OrderController oc = new OrderController(new OrderService(new OrderDao(db)),utils);
+				OrderController oc = new OrderController(new OrderService(new OrderDao(db)), utils);
 				executeAction(oc, action);
 				System.out.println("What entity would you like to use?");
 				System.out.println("Customers \nOrders \nProducts");
 				System.out.println("Enter STOP now, if you are finished");
 				table = utils.getInput().toUpperCase();
-				
+
 				System.out.println("What would you like to do with " + table + ":");
 				System.out.println("Create \nRead \nUpdate \nDelete");
 				action = utils.getInput().toUpperCase();
 				break;
 			case "PRODUCTS":
-				ProductController pc = new ProductController(new ProductService(new ProductDao(db)),utils);
+				ProductController pc = new ProductController(new ProductService(new ProductDao(db)), utils);
 				executeAction(pc, action);
 				System.out.println("What entity would you like to use?");
 				System.out.println("Customers \nOrders \nProducts");
 				System.out.println("Enter STOP now, if you are finished");
 				table = utils.getInput().toUpperCase();
-				
+
 				System.out.println("What would you like to do with " + table + ":");
 				System.out.println("Create \nRead \nUpdate \nDelete");
 				action = utils.getInput().toUpperCase();
@@ -82,22 +83,32 @@ public class Ims {
 		}
 
 	}
-	
+
 	public void executeAction(CrudController<?> crudController, String action) {
 		// will need a while loop
-		switch (action) {
-		case "CREATE":
-			crudController.Create();
-			break;
-		case "READ":
-			crudController.Read();
-			break;
-		case "UPDATE":
-			crudController.Update();
-			break;
-		case "DELETE":
-			crudController.Delete();
-			break;
+		boolean flag = true;
+		while (flag) {
+			switch (action) {
+			case "CREATE":
+				crudController.Create();
+				flag = false;
+				break;
+			case "READ":
+				crudController.Read();
+				flag = false;
+				break;
+			case "UPDATE":
+				crudController.Update();
+				flag = false;
+				break;
+			case "DELETE":
+				crudController.Delete();
+				flag = false;
+				break;
+			default:
+				System.out.println("That is an invalid input, please try again.");
+				action = utils.getInput().toUpperCase();
+			}
 		}
 	}
 
