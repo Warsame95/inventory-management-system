@@ -18,7 +18,7 @@ public class CustomerDao implements Dao<Customer> {
 	
 	public Customer Create(Customer customer) {
 		// TODO Auto-generated method stub
-		String sqlInsert = "Insert into Customers (name, email, address) values('" + customer.getName()+ "','"
+		String sqlInsert = "Insert into customers (name, email, address) values('" + customer.getName()+ "','"
 		+ customer.getEmail()+ "','"+ customer.getAddress()+"')";
 		
 		try {
@@ -56,13 +56,13 @@ public class CustomerDao implements Dao<Customer> {
 		
 		switch(attribute) {
 		case "NAME":
-			sql = "UPDATE Customers set name = '"+ customer.getName() + "' where customer_id = "+id;
+			sql = "UPDATE customers set name = '"+ customer.getName() + "' where customer_id = "+id;
 			break;
 		case "EMAIL":
-			sql = "UPDATE Customers set email = '"+ customer.getEmail() + "' where customer_id = "+id;
+			sql = "UPDATE customers set email = '"+ customer.getEmail() + "' where customer_id = "+id;
 			break;
 		case "ADDRESS":
-			sql = "UPDATE Customers set Address = '"+ customer.getAddress() + "' where customer_id = "+id;
+			sql = "UPDATE customers set address = '"+ customer.getAddress() + "' where customer_id = "+id;
 			break;
 		}
 		
@@ -78,7 +78,7 @@ public class CustomerDao implements Dao<Customer> {
 
 	public void Delete(int id) {
 		// TODO Auto-generated method stub
-		String sql4 = "DELETE FROM Customers where customer_id= " + id;
+		String sql4 = "DELETE FROM customers where customer_id= " + id;
 		try {
 			stmt.executeUpdate(sql4);
 			System.out.println("Deleted");

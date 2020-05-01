@@ -19,7 +19,7 @@ public class OrderDao implements Dao<Order>{
 		// TODO Auto-generated method stub
 		double totalPrice = getPrice(order.getProductId())*order.getQuantity();
 		
-		String sqlInsert = "Insert into Orders (product_id, customer_id, quantity, price) values("+ order.getProductId()+ ","
+		String sqlInsert = "Insert into orders (product_id, customer_id, quantity, price) values("+ order.getProductId()+ ","
 				+ order.getCustomerId()+ ","+ order.getQuantity()+","+ totalPrice +")";
 				
 				try {
@@ -57,19 +57,19 @@ public class OrderDao implements Dao<Order>{
 		String sql2 = "";
 		switch(attribute) {
 		case "PRODUCTID":
-			sql = "UPDATE Orders set product_id = "+ order.getProductId() + " where order_id = "+id;
+			sql = "UPDATE orders set product_id = "+ order.getProductId() + " where order_id = "+id;
 			break;
 		case "CUSTOMERID":
-			sql = "UPDATE Orders set customer_id = "+ order.getCustomerId() + " where order_id = "+id;
+			sql = "UPDATE orders set customer_id = "+ order.getCustomerId() + " where order_id = "+id;
 			break;
 		case "PRICE":
-			sql = "UPDATE Orders set price = "+ order.getPrice() + " where order_id = "+id;
+			sql = "UPDATE orders set price = "+ order.getPrice() + " where order_id = "+id;
 			break;
 		case "QUANTITY":
-			sql = "UPDATE Orders set quantity = "+ order.getQuantity() + " where order_id = "+id;
+			sql = "UPDATE orders set quantity = "+ order.getQuantity() + " where order_id = "+id;
 			o = readById(id);
 			double price = getPrice(o.getProductId())*order.getQuantity();
-			sql2 = "UPDATE Orders set price = "+ price + " where order_id = "+id;
+			sql2 = "UPDATE orders set price = "+ price + " where order_id = "+id;
 			break;
 		}
 		
@@ -86,7 +86,7 @@ public class OrderDao implements Dao<Order>{
 
 	public void Delete(int order_id) {
 		// TODO Auto-generated method stub
-		String sql = "DELETE FROM Orders where order_id= " + order_id;
+		String sql = "DELETE FROM orders where order_id= " + order_id;
 		try {
 			stmt.executeUpdate(sql);
 			System.out.println("Deleted");

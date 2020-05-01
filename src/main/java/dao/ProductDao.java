@@ -17,7 +17,7 @@ public class ProductDao implements Dao<Product>{
 
 	public Product Create(Product product) {
 		// TODO Auto-generated method stub
-		String sqlInsert = "Insert into Products (name, price, stock) values('"+ product.getName()+ "',"
+		String sqlInsert = "Insert into products (name, price, stock) values('"+ product.getName()+ "',"
 				+ product.getPrice()+ ","+ product.getStock()+")";
 				
 				try {
@@ -52,13 +52,13 @@ public class ProductDao implements Dao<Product>{
 		
 		switch(attribute) {
 		case "NAME":
-			sql = "UPDATE Products set name = '"+ product.getName() + "' where product_id = "+id;
+			sql = "UPDATE products set name = '"+ product.getName() + "' where product_id = "+id;
 			break;
 		case "PRICE":
-			sql = "UPDATE Products set price = "+ product.getPrice() + " where product_id = "+id;
+			sql = "UPDATE products set price = "+ product.getPrice() + " where product_id = "+id;
 			break;
 		case "STOCK":
-			sql = "UPDATE Products set stock = "+ product.getStock() + " where product_id = "+id;
+			sql = "UPDATE products set stock = "+ product.getStock() + " where product_id = "+id;
 			break;
 		}
 		
@@ -75,7 +75,7 @@ public class ProductDao implements Dao<Product>{
 
 	public void Delete(int id) {
 		// TODO Auto-generated method stub
-		String sql4 = "DELETE FROM Products where product_id= " + id;
+		String sql4 = "DELETE FROM products where product_id= " + id;
 		try {
 			stmt.executeUpdate(sql4);
 			System.out.println("Deleted");

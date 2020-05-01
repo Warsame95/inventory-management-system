@@ -16,8 +16,11 @@ import utils.Utils;
 public class Ims {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost:3306/gamedb?useSSL=false";
+	static final String DB_URL2 = "jdbc:mysql://35.246.105.113/inventory";
+	
 	static final String USER = "root";
 	static final String PASS = "Manchester95";
+	static final String PASS2 = "root";
 
 	Utils utils = new Utils();
 
