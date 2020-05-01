@@ -17,7 +17,7 @@ public class Ims {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost:3306/gamedb?useSSL=false";
 	static final String DB_URL2 = "jdbc:mysql://35.246.105.113/inventory";
-	
+
 	static final String USER = "root";
 	static final String PASS = "Manchester95";
 	static final String PASS2 = "root";
@@ -26,7 +26,7 @@ public class Ims {
 
 	public void Start() {
 
-		dbConnect db = new dbConnect(JDBC_DRIVER, DB_URL, USER, PASS);
+		dbConnect db = new dbConnect(JDBC_DRIVER, DB_URL2, USER, PASS2);
 
 		System.out.println("What entity would you like to use?");
 		System.out.println("Customers \nOrders \nProducts");
@@ -88,7 +88,7 @@ public class Ims {
 	}
 
 	public void executeAction(CrudController<?> crudController, String action) {
-		
+
 		boolean flag = true;
 		while (flag) {
 			switch (action) {
