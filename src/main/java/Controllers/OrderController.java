@@ -50,31 +50,35 @@ public class OrderController implements CrudController<Order> {
 	public Order Update() {
 		// TODO Auto-generated method stub
 		Order ordTemp;
-		System.out.println("Enter ID or order you want to update");
+		System.out.println("Enter ID of order you want to update");
 		int ID = utils.getInt();
 		
-		System.out.println("Enter the attribute you want to update i.e customerid, productid or quantity");
-		String attribute = utils.getInput().toUpperCase();
+//		System.out.println("Enter the attribute you want to update i.e customerid, productid or quantity");
+//		String attribute = utils.getInput().toUpperCase();
 		
-		System.out.println("Enter the new value");
+		System.out.println("Enter the new quantity value");
 		int newValue = utils.getInt();
 		
-		switch(attribute) {
-		case "CUSTOMERID":
-			ordTemp = new Order(ID, newValue, 0,0);
-			orderService.Update(ID, attribute, ordTemp);
-			return ordTemp;
-		case "PRODUCTID":
-			ordTemp = new Order(ID,0, newValue,0);
-			orderService.Update(ID, attribute, new Order(ID,0, newValue,0));
-			return ordTemp;
-		case "QUANTITY":
-			ordTemp = new Order(ID,0, 0, newValue);
-			orderService.Update(ID, attribute, new Order(ID,0, 0, newValue));
-			return ordTemp;
-		}
-		return null;
+		ordTemp = new Order(ID,0, 0, newValue);
+		orderService.Update(ID, "QUANTITY", new Order(ID,0, 0, newValue));
+		return ordTemp;
 		
+//		switch(attribute) {
+//		case "CUSTOMERID":
+//			ordTemp = new Order(ID, newValue, 0,0);
+//			orderService.Update(ID, attribute, ordTemp);
+//			return ordTemp;
+//		case "PRODUCTID":
+//			ordTemp = new Order(ID,0, newValue,0);
+//			orderService.Update(ID, attribute, new Order(ID,0, newValue,0));
+//			return ordTemp;
+//		case "QUANTITY":
+//			ordTemp = new Order(ID,0, 0, newValue);
+//			orderService.Update(ID, attribute, new Order(ID,0, 0, newValue));
+//			return ordTemp;
+//		}
+//		return null;
+//		
 	}
 
 	@Override
